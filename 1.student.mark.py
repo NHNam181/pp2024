@@ -9,7 +9,7 @@ for i in range(student_num):
     student['Name'] = input('Enter student name: ')
     student['DoB'] = input('Enter student DoB: ')
     
-    # Store student's mark in each course
+    # Store student's mark in each course.
     student['Marks'] = {}
     
     student_info.append(student)
@@ -23,14 +23,14 @@ for i in range(courses):
     
     course_info.append(course)
 
-#Print the student mark in the course
+#Print the student mark in the course.
 for student in student_info:
     print(f"\nEnter marks for student {student['Name']}:")
     for course in course_info:
         mark = float(input(f"Enter mark for {course['Course name']}: "))
         student['Marks'][course['Course name']] = mark
 
-# Print the information
+# Print the information.
 print("\nStudent Information:")
 for student in student_info:
     print(f"\nID: {student['ID']}\nName: {student['Name']}\nDoB: {student['DoB']}")
