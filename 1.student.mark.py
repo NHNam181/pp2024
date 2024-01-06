@@ -44,5 +44,3 @@ for student in student_info:
 print("\nCourse Information:")
 for course in course_info:
     print(f"\nCourse Name: {course['Course name']}\nCourse ID: {course['Course ID']}")
-
-#ready to push
