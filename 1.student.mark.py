@@ -1,6 +1,8 @@
 student_info = []
 course_info = []
 
+
+#Input student's info:
 student_num = int(input("Input the number of students: "))
 
 for i in range(student_num):
@@ -9,11 +11,12 @@ for i in range(student_num):
     student['Name'] = input('Enter student name: ')
     student['DoB'] = input('Enter student DoB: ')
     
-    # Store student's mark in each course.
+# Store student's mark in each course.
     student['Marks'] = {}
     
     student_info.append(student)
 
+#Input courses' info:
 courses = int(input("Input the number of courses: "))
 
 for i in range(courses):
