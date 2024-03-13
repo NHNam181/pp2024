@@ -37,19 +37,6 @@ def main():
     print("\nCourse Information:")
     for course in course_info:
         print(f"\nCourse Name: {course.name}\nCourse ID: {course.ID}")
-
-    with open("students.txt", "w") as students_file:
-        for student in student_info:
-            students_file.write(f"{student.ID}.{student.Name} - {student.DoB}\n")
-
-    with open("courses.txt", "w") as courses_file:
-        for course in course_info:
-            courses_file.write(f"{course.ID}.{course.name}\n")
-
-    with open("marks.txt", "w") as marks_file:
-        for student in student_info:
-            for course in course_info:
-                marks_file.write(f"{student.ID}.{student.Name}:{course.name} - {student.Marks[course.name]}\n")
-    
+        
 if __name__ == "__main__":
     main()
