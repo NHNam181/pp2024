@@ -3,9 +3,6 @@ from domains.student import Student
 from domains.course import Course
 from input import input_int
 import numpy as np
-import os.path
-
-save_path = 'D:/pp2024/pw5/'
 
 def main():
     student_info = []
