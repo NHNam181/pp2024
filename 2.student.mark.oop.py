@@ -1,4 +1,6 @@
-class Student:
+#Make OOP'ed
+
+class Student: # Add Student class and use encapsulation
     def __init__(self, student_id, name, dob):
         self.ID = student_id
         self.Name = name
@@ -17,7 +19,7 @@ class Student:
             print(f"  {course}: {mark}")
 
 
-class Course:
+class Course: # Add Course class and use encapsulation
     def __init__(self, name, course_id):
         self.name = name
         self.ID = course_id
