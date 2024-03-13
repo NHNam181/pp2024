@@ -1,3 +1,6 @@
+#Add floor()
+#Use numpy module and its array to calculate GPA
+
 import math
 import numpy as np
 
@@ -19,7 +22,7 @@ class Student:
             credit = int(input(f"Enter credits for {course.name}: "))
             self.Credits[course.name] = credit
 
-    def calculate_gpa(self):
+    def calculate_gpa(self): #Add caclulate_gpa function
         total_credits = sum(self.Credits.values())
         weighted_marks = np.array([self.Marks[course] * self.Credits[course] for course in self.Marks])
         gpa = np.sum(weighted_marks) / total_credits
