@@ -1,46 +1,57 @@
-student_info = []
-course_info = []
+class Student:
+    def __init__(self, student_id, name, dob):
+        self.ID = student_id
+        self.Name = name
+        self.DoB = dob
+        self.Marks = {}
+
+    def input_marks(self, courses):
+        for course in courses:
+            mark = float(input(f"Enter mark for {course.name}: "))
+            self.Marks[course.name] = mark
+
+    def display_info(self):
+        print(f"\nID: {self.ID}\nName: {self.Name}\nDoB: {self.DoB}")
+        print("Marks:")
+        for course, mark in self.Marks.items():
+            print(f"  {course}: {mark}")
 
 
-#Input student's info:
-student_num = int(input("Input the number of students: "))
+class Course:
+    def __init__(self, name, course_id):
+        self.name = name
+        self.ID = course_id
 
-for i in range(student_num):
-    student = {}
-    student['ID'] = input('Enter the student ID: ')
-    student['Name'] = input('Enter student name: ')
-    student['DoB'] = input('Enter student DoB: ')
-    
-# Store student's mark in each course.
-    student['Marks'] = {}
-    
-    student_info.append(student)
 
-#Input courses' info:
-courses = int(input("Input the number of courses: "))
+def main():
+    student_info = []
+    course_info = []
 
-for i in range(courses):
-    course = {}
-    course['Course name'] = input('Enter course name: ')
-    course['Course ID'] = input('Enter course ID: ')
-    
-    course_info.append(course)
+    student_num = int(input("Input the number of students: "))
+    for _ in range(student_num):
+        student_id = input('Enter the student ID: ')
+        name = input('Enter student name: ')
+        dob = input('Enter student DoB: ')
+        student_info.append(Student(student_id, name, dob))
 
-#Print the student mark in the course.
-for student in student_info:
-    print(f"\nEnter marks for student {student['Name']}:")
+    courses = int(input("Input the number of courses: "))
+    for _ in range(courses):
+        name = input('Enter course name: ')
+        course_id = input('Enter course ID: ')
+        course_info.append(Course(name, course_id))
+
+    for student in student_info:
+        print(f"\nEnter marks for student {student.Name}:")
+        student.input_marks(course_info)
+
+    print("\nStudent Information:")
+    for student in student_info:
+        student.display_info()
+
+    print("\nCourse Information:")
     for course in course_info:
-        mark = float(input(f"Enter mark for {course['Course name']}: "))
-        student['Marks'][course['Course name']] = mark
+        print(f"\nCourse Name: {course.name}\nCourse ID: {course.ID}")
 
-# Print the information.
-print("\nStudent Information:")
-for student in student_info:
-    print(f"\nID: {student['ID']}\nName: {student['Name']}\nDoB: {student['DoB']}")
-    print("Marks:")
-    for course, mark in student['Marks'].items():
-        print(f"  {course}: {mark}")
 
-print("\nCourse Information:")
-for course in course_info:
-    print(f"\nCourse Name: {course['Course name']}\nCourse ID: {course['Course ID']}")
+if __name__ == "__main__":
+    main()
