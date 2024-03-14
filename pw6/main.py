@@ -1,8 +1,6 @@
-#Main
+import pickle
 from domains.student import Student
 from domains.course import Course
-from input import input_int
-import numpy as np
 
 def main():
     student_info = []
@@ -34,6 +32,13 @@ def main():
     print("\nCourse Information:")
     for course in course_info:
         print(f"\nCourse Name: {course.name}\nCourse ID: {course.ID}")
+
+    # Saving student and course information
+    with open("students.pickle", "wb") as students_file:
+        pickle.dump(student_info, students_file)
+
+    with open("courses.pickle", "wb") as courses_file:
+        pickle.dump(course_info, courses_file)
 
     with open("students.txt", "w") as students_file:
         for student in student_info:
