@@ -1,8 +1,6 @@
 #Main
 from domains.student import Student
 from domains.course import Course
-from input import input_int
-import numpy as np
 
 def main():
     student_info = []
@@ -34,6 +32,6 @@ def main():
     print("\nCourse Information:")
     for course in course_info:
         print(f"\nCourse Name: {course.name}\nCourse ID: {course.ID}")
-
+        
 if __name__ == "__main__":
     main()
