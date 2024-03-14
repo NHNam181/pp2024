@@ -1,8 +1,6 @@
 #Main
 from domains.student import Student
 from domains.course import Course
-from input import input_int
-import numpy as np
 
 def main():
     student_info = []
