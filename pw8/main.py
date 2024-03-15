@@ -1,6 +1,29 @@
 import pickle
+import threading
+from threading import Lock
 from domains.student import Student
 from domains.course import Course
+
+class BackgroundThread(threading.Thread):
+    def __init__(self, target, args=()):
+        super().__init__()
+        self.target = target
+        self.args = args
+
+    def run(self):
+        self.target(*self.args)
+
+class PicklePersistenceThread(BackgroundThread):
+    def __init__(self, data, filename):
+        super().__init__(target=self.save_pickle, args=(data, filename))
+        self.data = data
+        self.filename = filename
+        self.lock = Lock()
+
+    def save_pickle(self, data, filename):
+        with self.lock:
+            with open(filename, "wb") as file:
+                pickle.dump(data, file)
 
 def main():
     student_info = []
@@ -25,6 +48,14 @@ def main():
         print(f"\nEnter marks for student {student.Name}:")
         student.input_marks(course_info)
 
+    students_thread = PicklePersistenceThread(student_info, "students.pickle")
+    courses_thread = PicklePersistenceThread(course_info, "courses.pickle")
+    students_thread.start()
+    courses_thread.start()
+
+    students_thread.join()
+    courses_thread.join()
+
     print("\nStudent Information:")
     for student in student_info:
         student.display_info()
@@ -33,7 +64,6 @@ def main():
     for course in course_info:
         print(f"\nCourse Name: {course.name}\nCourse ID: {course.ID}")
 
-    # Saving student and course information
     with open("students.pickle", "wb") as students_file:
         pickle.dump(student_info, students_file)
 
@@ -52,6 +82,6 @@ def main():
         for student in student_info:
             for course in course_info:
                 marks_file.write(f"{student.ID}.{student.Name}:{course.name} - {student.Marks[course.name]}\n")
-    
+
 if __name__ == "__main__":
     main()
